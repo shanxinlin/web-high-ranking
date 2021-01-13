@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+
+<body>
+    <div class="box">修改this指向</div>
+    <script>
+        var box = document.querySelector('.box'), a = "", b = ""
+        var obj = {
+            fn1: function () {
+                console.log(this)  // 指向box
+            },
+            fn2: () => {
+                console.log(this)  // 指向windows
+            }
+        }
+        obj.fn2.call(box)
+        obj.fn1.call(box, a, b)
+        obj.fn1.apply(box, [a, b])
+        obj.fn1.bind(box, a, b)()
+    </script>
+</body>
+
+</html>

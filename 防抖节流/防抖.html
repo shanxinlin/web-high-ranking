@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box" style="background:rgb(7, 145, 122);height:100px;color:#fff"></div>
+    <img src="./img/jl.png" alt="">
+    <script>
+        var box = document.querySelector('.box')
+        box.onclick = debounce(move, 1500)
+        function move(ev) {
+            console.log(ev)
+            box.innerHTML = ev.clientX
+        }
+        function debounce(fn, wait) {
+            let timmer = null
+            return function () {
+                // 防抖
+                // timmer && clearTimeout(timmer)
+                // timmer = setTimeout(() => {
+                //     fn.apply(this, arguments)
+                // }, wait)
+                
+                var now = !timmer
+                timmer && clearTimeout(timmer)
+                timmer = setTimeout(() => {
+                    timmer = null
+                }, wait)
+                if (now) {
+                    fn.apply(this, arguments)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
